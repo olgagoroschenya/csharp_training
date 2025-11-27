@@ -12,7 +12,7 @@ namespace WebAddressbookTests
 {
     public class NavigationHelper : HelperBase
     {
-        public string baseURL = "http://localhost/addressbook/addressbook/";
+            public string baseURL = "http://localhost/addressbook/addressbook/";
         
 
         public NavigationHelper(ApplicationManager manager, string baseURL): base(manager)

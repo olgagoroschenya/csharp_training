@@ -12,7 +12,7 @@ namespace WebAddressbookTests
     {
         [Test]
         public void GroupCreationTests()
-       {
+        {
            GroupData group = new GroupData("group1");
             group.Header = "testGroup";
             group.Footer = "csharpTest";
@@ -31,5 +31,6 @@ namespace WebAddressbookTests
             app.Logout.Logout();
         }
 
-}
+             
+    }
 }

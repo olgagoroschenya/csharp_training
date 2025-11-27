@@ -22,7 +22,7 @@ namespace WebAddressbookTests
             app = new ApplicationManager();
             app.NavigationHelper.OpenHomePage();
             app.Auth.Login(new AccountData("admin", "secret"));
-
+           
         }
 
         [TearDown]
