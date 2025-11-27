@@ -15,7 +15,17 @@ namespace WebAddressbookTests
         {
         }
 
-        public void FillContactForm(ContactData contact)
+        public ContactHelper CreateContact(ContactData contact)
+        {
+            manager.NavigationHelper.GoToAddNewPage();
+            FillContactForm(contact);
+            SubmitContactCreation();
+            GoToHomePage();
+            return this;
+        }
+        
+
+        public ContactHelper FillContactForm(ContactData contact)
         {
             driver.FindElement(By.Name("firstname")).Click();
             driver.FindElement(By.Name("firstname")).Clear();
@@ -80,16 +90,19 @@ namespace WebAddressbookTests
             //  driver.FindElement(By.Name("ayear")).Click();
             //  driver.FindElement(By.Name("ayear")).Clear();
             // driver.FindElement(By.Name("ayear")).SendKeys("2034");
+            return this;
         }
 
-        public void SubmitContactCreation()
+        public ContactHelper SubmitContactCreation()
         {
             driver.FindElement(By.XPath("//form/input[20]")).Click();
+            return this;
         }
 
-        public void GoToHomePage()
+        public ContactHelper GoToHomePage()
         {
             driver.FindElement(By.LinkText("home page")).Click();
+            return this;
         }
     }
 }
