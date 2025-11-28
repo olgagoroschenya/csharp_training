@@ -21,6 +21,7 @@ namespace WebAddressbookTests
             app.GroupHelper.CreateGroup(group);
            // app.Logout.Logout();
        }
+        [Test]
          public void EmptyGroupCreationTest()
         {
             GroupData group = new GroupData("");

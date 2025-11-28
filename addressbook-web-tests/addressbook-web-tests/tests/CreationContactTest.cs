@@ -21,14 +21,8 @@ namespace WebAddressbookTests
             contact.Company = "ASDf";
 
             app.ContactHelper.CreateContact(contact);
-           // app.navigationHelper.OpenHomePage();
-            //app.Auth.Login(new AccountData("admin", "secret"));
-            //app.navigationHelper.GoToAddNewPage();
-            
-           // app.ContactHelper.FillContactForm(contact);
-            //app.ContactHelper.SubmitContactCreation();
-            //app.ContactHelper.GoToHomePage();
-            //app.Logout.Logout();
+          
+           //app.Logout.Logout();
         }
 
     }

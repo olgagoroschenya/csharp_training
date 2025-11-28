@@ -1,11 +1,12 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
+using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using NUnit.Framework;
 
 namespace WebAddressbookTests
 {
@@ -23,7 +24,25 @@ namespace WebAddressbookTests
             GoToHomePage();
             return this;
         }
-        
+        public ContactHelper RemoveContact()
+        {
+            SelectContact(1);
+            DeleteContact();
+            GoToHomePage();
+            return this;
+        }
+
+      
+
+        public ContactHelper ModificateContact()
+        {
+            SelectContact(1);
+            AddToGroup();
+            GoToGroupPage();
+            return this;
+        }
+
+       
 
         public ContactHelper FillContactForm(ContactData contact)
         {
@@ -62,7 +81,7 @@ namespace WebAddressbookTests
             driver.FindElement(By.Name("work")).SendKeys(contact.Work_telephone.ToString());
             driver.FindElement(By.Name("fax")).Click();
             driver.FindElement(By.Name("fax")).Clear();
-            driver.FindElement(By.Name("work")).SendKeys(contact.Fax.ToString());
+            driver.FindElement(By.Name("fax")).SendKeys(contact.Fax.ToString());
             driver.FindElement(By.Name("email")).Click();
             driver.FindElement(By.Name("email")).Clear();
             driver.FindElement(By.Name("email")).SendKeys(contact.Email);
@@ -104,5 +123,31 @@ namespace WebAddressbookTests
             driver.FindElement(By.LinkText("home page")).Click();
             return this;
         }
+
+        public ContactHelper SelectContact(int index)
+        {
+            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
+            return this;
+        }
+        public ContactHelper DeleteContact()
+        {
+            driver.FindElement(By.Name("delete")).Click();
+            return this;
+        }
+
+        public ContactHelper AddToGroup()
+        {
+            driver.FindElement(By.Name("to_group")).Click();
+            new SelectElement(driver.FindElement(By.Name("to_group"))).SelectByText("d");
+            driver.FindElement(By.XPath("//form[2]/div[4]/select/option[2]")).Click();
+            driver.FindElement(By.Name("add")).Click();
+            return this;
+        }
+        public ContactHelper GoToGroupPage()
+        {
+            driver.FindElement(By.LinkText("group page \"d\"")).Click();
+            return this;
+        }
     }
 }
+//div[@id = 'content']
