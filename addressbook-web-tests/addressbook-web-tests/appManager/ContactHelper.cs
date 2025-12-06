@@ -34,16 +34,28 @@ namespace WebAddressbookTests
 
       
 
-        public ContactHelper ModificateContact()
+        public ContactHelper ModificateContact(int y, ContactData newDataContact)
         {
             SelectContact(1);
-            AddToGroup();
-            GoToGroupPage();
+            EditContact();
+            FillContactForm(newDataContact);
+            UpdateContact();
+            return this;
+        }
+
+        public ContactHelper EditContact()
+        {
+            driver.FindElement(By.XPath("//img[@alt='Edit']")).Click();
+            return this;
+        }
+
+        public ContactHelper UpdateContact()
+        {
+            driver.FindElement(By.XPath("//div[@id='content']/form/input[21]")).Click();
             return this;
         }
 
        
-
         public ContactHelper FillContactForm(ContactData contact)
         {
             driver.FindElement(By.Name("firstname")).Click();

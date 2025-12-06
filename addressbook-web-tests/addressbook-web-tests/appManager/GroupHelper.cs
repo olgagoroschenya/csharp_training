@@ -32,7 +32,7 @@ namespace WebAddressbookTests
         }
 
         //Выделение вспомогательного метода, который включает в себя методы удаления группы
-        public GroupHelper RemoveGroups()
+        public GroupHelper RemoveGroups(int p)
         {
             manager.NavigationHelper.GoToGroupsPage();
             SelectGroup(1);
@@ -108,6 +108,8 @@ namespace WebAddressbookTests
         public GroupHelper SelectGroup(int index)
         {
             driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
+            //driver.FindElement(By.Name("selected[]")).Click();
+            //driver.FindElement(By.XPath("//div[@id='content']/form/input[5]")).Click();
             return this;
         }
 
