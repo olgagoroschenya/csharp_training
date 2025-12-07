@@ -15,7 +15,7 @@ namespace WebAddressbookTests
             newDataContact.Nickname = "test";
             newDataContact.Email2 = "petr2@mail.ru";
             newDataContact.Fax = 589624;
-            newDataContact.Company = "ASDf";
+            newDataContact.Company = null;
 
             app.ContactHelper.ModificateContact(1, newDataContact);
      }

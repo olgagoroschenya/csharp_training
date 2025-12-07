@@ -10,8 +10,8 @@ namespace WebAddressbookTests
         public void GroupModificationTest()
         {
             GroupData newData = new GroupData("bb");
-            newData.Header = "nn";
-            newData.Footer = "mm";
+            newData.Header = null;
+            newData.Footer = null;
 
 
             app.GroupHelper.Modify(1, newData);
