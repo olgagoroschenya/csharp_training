@@ -65,7 +65,7 @@ namespace WebAddressbookTests
             }
         }
 
-        private bool IsElementPresent(By by)
+        public bool IsElementPresent(By by)
         {
             try
             {

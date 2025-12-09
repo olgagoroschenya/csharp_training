@@ -14,7 +14,7 @@ namespace WebAddressbookTests
     public class ApplicationManager
     {
         protected LoginHelper loginHelper;
-        protected LogoutHelper logoutHelper;
+        //protected LogoutHelper logoutHelper;
         public NavigationHelper navigationHelper;
         protected GroupHelper groupHelper;
         protected ContactHelper contactHelper;
@@ -35,7 +35,7 @@ namespace WebAddressbookTests
             driver = new FirefoxDriver();
             baseURL = "http://localhost/addressbook/addressbook/";
             loginHelper = new LoginHelper(this);
-            logoutHelper = new LogoutHelper(this);
+            //logoutHelper = new LogoutHelper(this);
             navigationHelper = new NavigationHelper(this, baseURL);
             groupHelper = new GroupHelper(this);
             contactHelper = new ContactHelper(this);
@@ -55,7 +55,10 @@ namespace WebAddressbookTests
         {
             if (! app.IsValueCreated)
             { 
-            app.Value = new ApplicationManager();
+            ApplicationManager newInstance = new ApplicationManager();
+                
+                newInstance.NavigationHelper.OpenHomePage();
+                app.Value = newInstance;
             }
             return app.Value;
         }
@@ -69,8 +72,8 @@ namespace WebAddressbookTests
         public LoginHelper Auth 
         { get {return loginHelper;} }
 
-        public LogoutHelper Logout 
-        { get {return logoutHelper;} }
+       // public LogoutHelper Logout 
+       // { get {return logoutHelper;} }
 
         public NavigationHelper NavigationHelper 
         { get {return navigationHelper;} }
