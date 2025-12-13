@@ -24,9 +24,9 @@ namespace WebAddressbookTests
             GoToHomePage();
             return this;
         }
-        public ContactHelper RemoveContact()
+        public ContactHelper RemoveContact(int p)
         {
-            SelectContact(1);
+            SelectContact(7);
             DeleteContact();
             GoToHomePage();
             return this;
@@ -172,9 +172,30 @@ namespace WebAddressbookTests
 
         public ContactHelper SelectContact(int index)
         {
-            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
-            return this;
+            if (IsContactExists())
+            {
+                driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
+            }
+            else 
+            {
+                ContactData newContact = new ContactData("Olga", "Gor", 78945612, "ol@cjm.tu", new DateTime());
+                manager.NavigationHelper.GoToAddNewPage();
+                FillContactForm(newContact);
+                SubmitContactCreation();
+                GoToHomePage();
+                driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
+            }
+
+                return this;
         }
+
+        public bool IsContactExists()
+        {
+            int index = 7;
+            driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
+            return true;
+        }
+
         public ContactHelper DeleteContact()
         {
             driver.FindElement(By.Name("delete")).Click();

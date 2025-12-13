@@ -43,10 +43,12 @@ namespace WebAddressbookTests
         }
         public bool IsLoggedIn(AccountData account)
         {
-            return IsLoggedIn() && driver.FindElement(By.LinkText("Logout")).FindElement(By.TagName("b")).Text==
+            return IsLoggedIn() && driver.FindElement(By.XPath("/html/body/div/div[1]/form/a")).FindElement(By.XPath("/html/body/div/div[1]/form/b")).Text==
                 "("+ account.Username+")";
         }
 
         
     }
 }
+//return IsLoggedIn() && driver.FindElement(By.LinkText("Logout")).FindElement(By.TagName("b")).Text ==
+//  "(" + account.Username + ")";/html/body/div/div[1]/form/a /html/body/div/div[1]/form/b
