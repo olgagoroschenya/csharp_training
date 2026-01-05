@@ -133,6 +133,19 @@ namespace WebAddressbookTests
             int index = 1;
             return IsElementPresent(By.XPath("(//input[@name='selected[]'])[" + index + "]"));
         }
+
+        public List<GroupData> GetGroupList()
+        {
+            List<GroupData> groups = new List<GroupData>();
+            manager.NavigationHelper.GoToGroupsPage();
+            ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("span.group"));
+            foreach (IWebElement element in elements)
+            { 
+            GroupData group = new GroupData(element.Text);
+                groups.Add(group);
+            }
+            return groups;
+        }
     }
 }
 //(By.Name("selected[]")) //div[@id='content']/form/span[3]/input /html/body/div/div[4]/form/span[1]/input

@@ -35,6 +35,9 @@ namespace WebAddressbookTests
         }
         public void GoToAddNewPage()
         {
+            if (driver.Url == baseURL + "edit.php" && IsElementPresent(By.Name("submit")))
+            { return; }
+
             driver.FindElement(By.LinkText("add new")).Click();
         }
     }

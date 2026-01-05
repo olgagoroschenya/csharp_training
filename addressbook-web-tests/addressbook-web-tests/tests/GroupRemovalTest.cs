@@ -1,11 +1,12 @@
-﻿using System;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading;
-using NUnit.Framework;
+﻿using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.Support.UI;
+using System;
+using System.Collections.Generic;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading;
 
 namespace WebAddressbookTests
 {
@@ -16,9 +17,13 @@ namespace WebAddressbookTests
         [Test]
         public void GroupRemovalTests()
         {
-            
+            List<GroupData> oldGroups = app.GroupHelper.GetGroupList();
+
             app.GroupHelper.RemoveGroups(1);
-         
+
+            List<GroupData> newGroups = app.GroupHelper.GetGroupList();
+            oldGroups.RemoveAt(0);
+            Assert.AreEqual(oldGroups, newGroups);
         }
 
     }

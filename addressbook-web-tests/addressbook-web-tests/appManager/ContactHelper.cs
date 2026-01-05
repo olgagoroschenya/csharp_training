@@ -40,6 +40,7 @@ namespace WebAddressbookTests
             EditContact();
             FillContactForm(newDataContact);
             UpdateContact();
+            GoToHomePage();
             return this;
         }
 
@@ -213,6 +214,19 @@ namespace WebAddressbookTests
         {
             driver.FindElement(By.LinkText("group page \"d\"")).Click();
             return this;
+        }
+
+        public List<ContactData> GetContactList()
+        {
+            List<ContactData> contacts = new List<ContactData>();
+            
+            ICollection<IWebElement> elements = driver.FindElements(By.CssSelector("td.center"));
+            foreach (IWebElement element in elements)
+            {
+                ContactData contact = new ContactData(element.Text);
+                contacts.Add(contact);
+            }
+            return contacts;
         }
     }
 }
