@@ -40,7 +40,10 @@ namespace WebAddressbookTests
             groupHelper = new GroupHelper(this);
             contactHelper = new ContactHelper(this);
         }
-        ~ApplicationManager()
+        //  ~ApplicationManager()
+        
+        [TearDown]
+        public void Stop()
         {
             try
             {
@@ -51,6 +54,7 @@ namespace WebAddressbookTests
                 // Ignore errors if unable to close the browser
             }
         }
+
         public static ApplicationManager GetInstance()
         {
             if (! app.IsValueCreated)

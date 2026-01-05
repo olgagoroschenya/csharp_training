@@ -35,7 +35,7 @@ namespace WebAddressbookTests
         public GroupHelper RemoveGroups(int p)
         {
             manager.NavigationHelper.GoToGroupsPage();
-            SelectGroup(36);
+            SelectGroup(1);
             RemoveGroup();
             ReturnToGroupsPage();
             return this;
@@ -43,7 +43,7 @@ namespace WebAddressbookTests
         public GroupHelper Modify(int v, GroupData newData)
         {
             manager.NavigationHelper.GoToGroupsPage();
-            SelectGroup(36);
+            SelectGroup(1);
             InitGroupModification();
             FillGroupForm(newData);
             SubmitGroupModification();
@@ -112,13 +112,13 @@ namespace WebAddressbookTests
             else 
             {
                 GroupData newGroup = new GroupData("group3");
-                //CreateGroup(newGroup);
+                CreateGroup(newGroup);
 
-                manager.NavigationHelper.GoToGroupsPage();
-                InitNewGroupCreation();
-                FillGroupForm(newGroup);
-                SubmitGroupCreation();
-                ReturnToGroupsPage();
+                //manager.NavigationHelper.GoToGroupsPage();
+                //InitNewGroupCreation();
+                //FillGroupForm(newGroup);
+                //SubmitGroupCreation();
+                //ReturnToGroupsPage();
                 driver.FindElement(By.XPath("(//input[@name='selected[]'])[" + index + "]")).Click();
                // return this;
             }
@@ -130,7 +130,7 @@ namespace WebAddressbookTests
 
         public bool IsGroupExists()
         {
-            int index = 36;
+            int index = 1;
             return IsElementPresent(By.XPath("(//input[@name='selected[]'])[" + index + "]"));
         }
     }

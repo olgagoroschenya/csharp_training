@@ -20,10 +20,11 @@ namespace WebAddressbookTests
         public void SetupApplicationManager()
         {
             app = ApplicationManager.GetInstance();
-           
-
-
         }
 
+        public void TeardownTest()
+        {
+            app.Stop();
+        }
     }
 }

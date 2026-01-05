@@ -9,7 +9,7 @@ namespace WebAddressbookTests
         [Test]
         public void RemoveContactTest()
         {
-            app.ContactHelper.RemoveContact(7);
+            app.ContactHelper.RemoveContact(1);
         }
     }
 }

@@ -64,7 +64,7 @@ namespace WebAddressbookTests
                 acceptNextAlert = true;
             }
         }
-
+      
         public bool IsElementPresent(By by)
         {
             try
