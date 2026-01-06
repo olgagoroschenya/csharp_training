@@ -15,6 +15,7 @@ namespace WebAddressbookTests
             newData.Footer = null;
 
             List<GroupData> oldGroups = app.GroupHelper.GetGroupList();
+            GroupData oldData = oldGroups[0];
 
             app.GroupHelper.Modify(1, newData);
 
@@ -23,6 +24,14 @@ namespace WebAddressbookTests
             oldGroups.Sort();
             newGroups.Sort();
             Assert.AreEqual(oldGroups, newGroups);
+            foreach (GroupData group in newGroups)
+            {
+                if (group.Id == oldData.Id)
+                {
+                    Assert.AreNotEqual(newData.Name, group.Name);
+                }
+                
+            }
         }
     }
 }
