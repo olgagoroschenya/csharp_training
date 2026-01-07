@@ -1,4 +1,5 @@
 ﻿using NUnit.Framework;
+using NUnit.Framework.Constraints;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
 using System;
@@ -259,7 +260,7 @@ namespace WebAddressbookTests
             string homePhone = driver.FindElement(By.Name("home")).GetAttribute("value");
             string mobilePhone = driver.FindElement(By.Name("mobile")).GetAttribute("value");
             string workPhone = driver.FindElement(By.Name("work")).GetAttribute("value");
-
+           
             return new ContactData(firstName, lastName)
             {
                 Address = address,
@@ -268,6 +269,36 @@ namespace WebAddressbookTests
                 Work_telephone = workPhone
             };
             
+        }
+
+        public ContactData GetContactInformationFromDetails(int index)
+        {
+            ViewDetails();
+            IList<IWebElement> allInformation = driver.FindElements(By.XPath("//div[@id='content']"));
+            
+            string allName = allInformation[0].Text;
+            string firstName = allName.Substring(0, allName.Length-7);
+            string lastName = allName.Substring(5);
+            string email = allInformation[7].Text;
+            string email2 = allInformation[8].Text;
+            string homePhone = allInformation[4].Text;
+            string mobilePhone = allInformation[5].Text;
+            string workPhone = allInformation[6].Text;
+
+            return new ContactData(firstName, lastName)
+            {
+                Email = email,
+                Email2 = email2,
+                Home_telephone = homePhone,
+                Mobile_telephone = mobilePhone,
+                Work_telephone = workPhone
+            };
+        }
+
+        public ContactHelper ViewDetails()
+        {
+            driver.FindElement(By.XPath("//img[@alt='Details']")).Click();
+            return this;
         }
     }
 }

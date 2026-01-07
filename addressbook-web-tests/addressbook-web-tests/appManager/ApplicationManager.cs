@@ -53,6 +53,7 @@ namespace WebAddressbookTests
             {
                 // Ignore errors if unable to close the browser
             }
+            Assert.AreEqual("", verificationErrors.ToString());
         }
 
         public static ApplicationManager GetInstance()

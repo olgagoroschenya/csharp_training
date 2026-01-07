@@ -30,6 +30,7 @@ namespace WebAddressbookTests
         private DateTime anniversary;
         private string group = "";
         private string allPhones;
+        private string allInformation;
 
         public ContactData(string first_name, string last_name) 
         {
@@ -124,6 +125,27 @@ namespace WebAddressbookTests
             return phone.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "")+"\r\n";
         }
 
-        
+        public string AllInformation
+        {
+            get
+            {
+                if (allInformation != null)
+                {
+                    return allInformation;
+                }
+                else
+                {
+                    return (CleanUpDetails(First_name) + CleanUpDetails(Last_name) + 
+                        CleanUpDetails(Nickname) + CleanUpDetails(Company)).Trim();
+                }
+            }
+            set { allInformation = value; }
+        }
+        private string CleanUpDetails(string detail)
+        {
+            if (detail == null || detail == "")
+            { return ""; }
+            return detail.Replace(" ", "") + "\r\n";
+        }
     }
 }
