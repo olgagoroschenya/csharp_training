@@ -43,11 +43,16 @@ namespace WebAddressbookTests
         }
         public bool IsLoggedIn(AccountData account)
         {
-            return IsLoggedIn() && driver.FindElement(By.XPath("/html/body/div/div[1]/form/a")).FindElement(By.XPath("/html/body/div/div[1]/form/b")).Text==
-                "("+ account.Username+")";
+            return IsLoggedIn() && GetLoggetUserName() == account.Username;
+              
         }
 
-        
+        public string GetLoggetUserName()
+        {
+            string text = driver.FindElement(By.XPath("/html/body/div/div[1]/form/a")).
+                 FindElement(By.XPath("/html/body/div/div[1]/form/b")).Text;
+            return text.Substring(1, text.Length - 2);
+        }
     }
 }
 //return IsLoggedIn() && driver.FindElement(By.LinkText("Logout")).FindElement(By.TagName("b")).Text ==

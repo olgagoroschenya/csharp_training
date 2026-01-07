@@ -28,7 +28,7 @@ namespace WebAddressbookTests
             {
                 if (group.Id == oldData.Id)
                 {
-                    Assert.AreNotEqual(newData.Name, group.Name);
+                    Assert.AreEqual(newData.Name, group.Name);
                 }
                 
             }

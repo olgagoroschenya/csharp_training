@@ -15,7 +15,9 @@ namespace WebAddressbookTests
         [Test]
         public void CreationContactTests()
         {
-            ContactData contact = new ContactData("Petr", "Petrov", 75698456, "petr@mail.ru", new DateTime(2001, 02, 02));
+            ContactData contact = new ContactData("Petr", "Petrov");
+            contact.Mobile_telephone = "75698456";
+            contact.Email = "petr@mail.ru";
             contact.Nickname = "test";
             contact.Email2 = "petr2@mail.ru";
             contact.Fax = 589624;

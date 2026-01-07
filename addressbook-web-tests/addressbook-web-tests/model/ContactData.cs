@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
@@ -11,7 +12,7 @@ namespace WebAddressbookTests
     {
         private string first_name;
         private string last_name;
-        private int mobile_telephone;
+        private string mobile_telephone;
         private string email;
         private DateTime birthday;
         private string middle_name = "";
@@ -20,23 +21,23 @@ namespace WebAddressbookTests
         private string title = "";
         private string company = "";
         private string address = "";
-        private int home_telephone = 0;
-        private int work_tephone = 0;
+        private string home_telephone;
+        private string work_tephone;
         private int fax = 0;
         private string email2 = "";
         private string email3 = "";
         private string homepage = "";
         private DateTime anniversary;
         private string group = "";
+        private string allPhones;
 
-
-        public ContactData(string first_name, string last_name, int mobile_telephone, string email, DateTime birthday) 
+        public ContactData(string first_name, string last_name) 
         {
-            this.first_name = first_name;
-            this.last_name = last_name;
-            this.mobile_telephone = mobile_telephone;
-            this.email = email;
-            this.birthday = birthday;
+           First_name = first_name;
+            Last_name = last_name;
+            Mobile_telephone = mobile_telephone;
+            Email = email;
+           Birthday = birthday;
         }
         public ContactData(string first_name)
         {
@@ -50,7 +51,7 @@ namespace WebAddressbookTests
             { return false; }
             if (Object.ReferenceEquals(this, other))
             { return true; }
-            return First_name == other.First_name;
+            return First_name == other.First_name && Last_name == other.Last_name;
            
         }
      
@@ -70,103 +71,59 @@ namespace WebAddressbookTests
             { return 1; }
             return First_name.CompareTo(other.First_name);
         }
-        public string First_name 
-        { 
-            get { return first_name; }
-            set {first_name = value; }
+        public string First_name { get; set; }
+        
+        public string Last_name { get; set; }
+      
+        public string Mobile_telephone { get; set; }
+        public string Email { get; set; }
+        public DateTime Birthday { get; set; }
+
+        public string Middle_name { get; set; }
+       
+        public string Nickname { get; set; }
+        public string Title { get; set; }
+        public string Company { get; set; }
+        public string Address { get; set; }
+
+        public string Home_telephone { get; set; }
+        public string Work_telephone { get; set; }
+
+        public int Fax { get; set; }
+
+        public string Email2 { get; set; }
+
+        public string Email3 { get; set; }
+
+        public string Homepage { get; set; }
+
+        public DateTime Anniversary { get; set; }
+
+        public string Group { get; set; }
+
+        public string AllPhones
+        {
+            get
+            {
+                if (allPhones != null)
+                {
+                    return allPhones;
+                }
+                else
+                {
+                    return (CleanUp(Home_telephone) + CleanUp(Mobile_telephone) + CleanUp(Work_telephone)).Trim();
+                }
+            }
+            set { allPhones = value; }
         }
 
-        public string Last_name
+        private string CleanUp(string phone)
         {
-          get { return last_name; }
-          set { last_name = value; }
+            if (phone == null || phone == "")
+            { return ""; }
+            return phone.Replace(" ", "").Replace("-", "").Replace("(", "").Replace(")", "")+"\r\n";
         }
 
-        public int Mobile_telephone
-        {
-            get { return mobile_telephone; }
-            set { mobile_telephone = value; }
-        }
-
-        public string Email
-        { get { return email; } 
-          set { email = value; }
-        }
-
-        public DateTime Birthday
-        { get { return birthday; }
-          set { birthday = value; }
-        }
-
-        public string Middle_name
-        { get { return middle_name; }
-          set { middle_name = value; } 
-        }
-
-        public string Nickname
-        {
-            get { return nickname; }
-            set { nickname = value; }
-        }
-        public string Title
-        {
-            get { return title; }
-            set { title = value; }
-        }
-        public string Company
-        {
-            get { return company; }
-            set { company = value; }
-        }
-        public string Address
-        {
-            get { return address; }
-            set { address = value; }
-        }
-
-        public int Home_telephone
-        {
-            get { return home_telephone; }
-            set { home_telephone = value; }
-        }
-        public int Work_telephone
-        {
-            get { return work_tephone; }
-            set { work_tephone = value; }
-        }
-
-        public int Fax
-        {
-            get { return fax; }
-            set { fax = value; }
-        }
-
-        public string Email2
-        {
-            get { return email2; }
-            set { email2 = value; }
-        }
-
-        public string Email3
-        {
-            get { return email3; }
-            set { email3 = value; }
-        }
-
-        public string Homepage
-        {
-            get { return homepage; }
-            set { homepage = value; }
-        }
-        public DateTime Anniversary
-        {
-            get { return anniversary; }
-            set { anniversary = value; }
-        }
-        public string Group
-        {
-            get { return group; }
-            set { group = value; }
-        }
+        
     }
 }

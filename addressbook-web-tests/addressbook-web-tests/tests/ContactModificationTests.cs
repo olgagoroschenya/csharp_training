@@ -12,7 +12,9 @@ namespace WebAddressbookTests
      [Test]
      public void ModificateContact()
      {
-            ContactData newDataContact = new ContactData("P", "Pet", 75698456, "petr@mail.ru", new DateTime(2001, 02, 02));
+            ContactData newDataContact = new ContactData("P", "Pet");
+            newDataContact.Mobile_telephone = "75698456";
+            newDataContact.Email = "petr@mail.ru";
             newDataContact.Nickname = "test";
             newDataContact.Email2 = "petr2@mail.ru";
             newDataContact.Fax = 589624;
